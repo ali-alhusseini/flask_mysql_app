@@ -15,6 +15,7 @@
 
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">MUC</a>
@@ -25,16 +26,17 @@
     </nav>
 
 
+    <!-- Search for a table -->
     <div class="container">
-        <h1 class="h2 m-2">
-            <i class="bi bi-database-add"></i>
+        <h3 class="h3 mb-3">
+            <i class="bi bi-search-heart-fill"></i>
             Search for a table
-        </h1>
+        </h3>
         <div class="col-sm-5">
             <form action="/tables" method="POST">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="myTable" placeholder="Table Name" required>
-                    <label for="tableName">Table Name</label>
+                    <label>Table name</label>
                     <input type="submit" class="btn btn-primary mt-3" value="Search">
                 </div>
             </form>
@@ -64,54 +66,40 @@
 
     <hr class="hr border-dark border-2">
 
-
+    <!-- Add a new supplier -->
     <div class="container">
-        <h1 class="h2 m-2">
-            <i class="bi bi-database-add"></i>
+        <h3 class="h3 mb-4">
+            <i class="bi bi-database-fill-add"></i>
             Add a new supplier 
-        </h1>
+        </h3>
         <div class="col-sm-5">
-            <form action="/suppliers" method="post">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="supplierID" name="_id" placeholder="Supplier ID">
-                    <label for="supplierID">Supplier ID</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="supplierName" name="name" placeholder="Supplier Name">
-                    <label for="supplierName">Supplier Name</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" name="email"
-                        placeholder="name@example.com">
-                    <label for="floatingInput">Supplier Email</label>
-                </div>
-
-                <div class="col-auto">
-                    <label for="phoneNumbers" class="col-form-label">Phone Numbers</label>
-                </div>
-                <div class="col-auto">
-                    <input type="number" id="phoneNumbers" name="number" class="form-control" aria-describedby="">
-                </div>
-                <div class="col-auto">
-                    <span class="form-text">
-                        Must be comma separated ex: 000-(555) 555-5555, 000-(555) 555-5555
-                    </span>
+            <form action="/add_supplier" method="post">
+                <div class="mb-3">
+                    <label for="supplierID" class="form-label">Supplier ID</label>
+                    <input type="text" class="form-control mb-3" id="supplierID" name="_id" required>
+                    <label for="supplierName" class="form-label">Supplier name</label>
+                    <input type="text" class="form-control mb-3" id="suppleirName" name="name" required>
+                    <label for="supplierEmail" type="text">Supplier email</label>
+                    <input type="email" class="form-control mb-3" id="supplierEmail" name="email">
+                    <label for="phoneNumbers" type="text">Phone numbers</label>
+                    <input type="tel" class="form-control mb-3" id="phoneNumbers" name="number" >
+                    <div class="form-text">
+                        Multiple phone numbers must be comma seperated.
+                    </div>
+                    <input type="submit" class="btn btn-primary mt-3" value="Add supplier">
                 </div>
             </form>
         </div>
-        <button type="submit" class="btn btn-primary">Add Supplier</button>
     </div>
 
     <hr class="hr border-dark border-2">
 
 
     <div class="container">
-        <h1 class="h2 m-2">
-            <i class="bi bi-cash-coin"></i>
+        <h3 class="h3 mb-3">
+            <i class="bi bi-piggy-bank-fill"></i>
             Annual expenses for parts 
-        </h1>
+        </h3>
 
         <div class="col-sm-5">
             <div class="form-floating mb-3">
@@ -131,15 +119,15 @@
 
 
     <div class="container">
-        <h1 class="h2 m-2">
-            <i class="bi bi-graph-up"></i>
-            Budget Projection
-        </h1>
+        <h3 class="h3 mb-3">
+            <i class="bi bi-arrow-up-right-circle-fill"></i>
+            Budget projection
+        </h3>
 
         <div class="col-sm-5">
             <div class="form-floating mb-3">
                 <input type="years" class="form-control" id="floatingInput" placeholder="Years">
-                <label for="floatingInput">Years</label>
+                <label for="floatingInput">Number of years</label>
             </div>
 
             <div class="input-group mb-3">
