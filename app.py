@@ -48,7 +48,7 @@ def add_supplier():
     details = request.form
     cur.execute("INSERT INTO suppliers(_id, name, email) VALUES (%s, %s, %s)", 
                 (details['_id'], details['name'], details['email']))
-    cur.execute("INSERT INTO supp_numbers(number,_id) VAUES (%s, %s)", (details['number'], details['_id']))
+    cur.execute("INSERT INTO supp_numbers(number,_id) VALUES (%s, %s)", (details['number'], details['_id']))
     conn.commit()
     cur.close()
     conn.close()
