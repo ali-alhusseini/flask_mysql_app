@@ -23,7 +23,7 @@ def index():
     return render_template('index.html')
 
 # Display all the data in the entered table name
-tables_list = ['parts', 'orders', 'order_items', 'suppliers', 'supp_numbers']
+tables_list = ['parts', 'orders', 'order_items', 'suppliers', 'supp_numbers', 'full_suppliers', 'full_orders']
 @app.route('/tables', methods=['GET', 'POST'])
 def display_table():
     conn = get_db_connection()
@@ -32,7 +32,26 @@ def display_table():
     if request.method == 'POST':
         table_name = request.form['myTable']
         if table_name in tables_list:
-            cur.execute("SELECT * FROM {}".format(table_name))
+            if table_name == "full_suppliers":
+                cur.execute("""
+                            SELECT _id, name, email, 
+                                GROUP_CONCAT(supp_numbers.number SEPARATOR ', ') 
+                                    AS tel 
+                            FROM suppliers, supp_numbers 
+                            WHERE _id = supp_id 
+                            GROUP BY _id
+                            """)
+            elif table_name == "full_orders":
+                cur.execute("""
+                            SELECT orders.when, supp_id, 
+                                GROUP_CONCAT(CONCAT('{part_id: ',order_items.part_id, ', qty: ', qty, '}') SEPARATOR ', ') 
+                                    AS items 
+                            FROM orders, order_items 
+                            WHERE orders._id = order_items.order_id 
+                            GROUP BY orders._id
+                            """)
+            else:
+                cur.execute("SELECT * FROM {}".format(table_name))
             data = cur.fetchall()
             cur.close()
             conn.close()
@@ -42,12 +61,23 @@ def display_table():
     else:
         return render_template('index.html', tables_list=tables_list)
 
+
 @app.route('/add-supplier', methods=['POST'])
 def add_supplier():
     conn = get_db_connection()
     cur = conn.cursor()
     details = request.form
+    # Check if email format is valid using regex
+    if not re.match(r"^\w+([.-]?\w+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*(\.[A-Za-z]{2,})$", details['email']):
+        return "Invalid email format {}".format(details['email'])      
     phone_numbers = details['phone_numbers'].split(',')
+    # check if phone numbers are valid
+    for number in phone_numbers:
+        if not re.match(r"^(((\d{1,3}-)?\(\d{3}\))|(\d-)?\d{3}-)?\d{3}-\d{4}$", number.strip()):
+            return "Invalid phone number {} present".format(number)    
+    # check valid supplier id
+    if eval(details['_id']) <= 100:
+        return "Enter a supplier id above 100"
     try:
         # insert supplier into the suppliers table
         cur.execute("INSERT INTO suppliers(_id, name, email) VALUES (%s, %s, %s)", 
