@@ -76,11 +76,11 @@
             <form action="/add-supplier" method="post">
                 <div class="mb-3">
                     <label for="supplierID" class="form-label">Supplier ID</label>
-                    <input type="text" class="form-control mb-3" id="supplierID" name="_id" required />
+                    <input type="text" class="form-control mb-3" id="supplierID" name="_id" pattern="^\d{3}$" required />
                     <label for="supplierName" class="form-label">Supplier name</label>
-                    <input type="text" class="form-control mb-3" id="suppleirName" name="name" required />
+                    <input type="text" class="form-control mb-3" id="suppleirName" name="name" pattern="^[A-Za-z][A-Za-z0-9 '-]*$" required />
                     <label for="supplierEmail" type="text">Supplier email</label>
-                    <input type="email" class="form-control mb-3" id="supplierEmail" name="email" />
+                    <input type="email" class="form-control mb-3" id="supplierEmail" name="email" required />
                     <label for="phoneNumbers" type="text">Phone numbers</label>
                     <input type="tel" class="form-control mb-3" id="phoneNumbers" name="phone_numbers" required />
                     <div class="form-text">
