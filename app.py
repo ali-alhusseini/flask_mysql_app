@@ -113,7 +113,7 @@ def annual_expenses():
         if len(end_year) != 4:
             return "Error: Please enter a valid end year."
         if not eval(end_year) in range(2015,2024):
-            return "Error: End year year is out of range."
+            return "Error: End year is out of range."
         if start_year > end_year:
             return "Error: start year must be before or equal to end year."
         if end_year < start_year:
