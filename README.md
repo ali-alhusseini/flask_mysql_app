@@ -8,3 +8,7 @@ This project aims to create a web application using Flask and MySQL for managing
 ## Database Schema
 
 The database schema is designed according to the requirements provided by MUC. It includes tables for customers, transactions, cars, parts, suppliers, orders, and monthly expenses. The schema is normalized to the third normal form (3NF) and ensures data integrity through primary and foreign keys.
+
+## Screenshots
+![Screenshot 1](/screenshots/Screenshot1.png)
+![Screenshot 2](/screenshots/Screenshot2.png)
