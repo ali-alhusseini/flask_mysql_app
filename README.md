@@ -12,3 +12,8 @@ The database schema is designed according to the requirements provided by MUC. I
 ## Screenshots
 ![Screenshot 1](/screenshots/Screenshot1.png)
 ![Screenshot 2](/screenshots/Screenshot2.png)
+
+## Contributors
+- [Ali Alhusseini](https://github.com/ali-alhusseini)
+- [Alexander Jaques](https://github.com/ajques)
+- [Riley O'Keefe](https://github.com/riley-okeefe)
